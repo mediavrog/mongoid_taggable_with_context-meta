@@ -8,11 +8,11 @@ module Mongoid
         field :name, :type => String
         field :context
         field :meta, :type => Hash, :default => {}
-        embedded_in :meta_tagable, :polymorphic => true
+        embedded_in :meta_taggable, :polymorphic => true
       end
 
       included do
-        embeds_many :meta_tags, :as => :meta_tagable, :class_name => "Mongoid::TaggableWithContext::Meta::MetaTag"
+        embeds_many :meta_tags, :as => :meta_taggable, :class_name => "Mongoid::TaggableWithContext::Meta::MetaTag"
       end
 
     end
