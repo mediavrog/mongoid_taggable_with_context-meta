@@ -1,12 +1,10 @@
-require 'mongoid'
-
 module Mongoid::TaggableWithContext
   module Meta
     class MetaTag
       include Mongoid::Document
       field :name, :type => String
       field :context
-      field :with_meta, :type => Hash, :default => {}
+      field :meta, :type => Hash, :default => {}
       embedded_in :meta_tagable, :polymorphic => true
     end
   end

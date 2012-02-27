@@ -5,8 +5,8 @@ class MyModel
   include Mongoid::TaggableWithContext
   include Mongoid::TaggableWithContext::Meta
 
-  taggable :with_meta => true
-  taggable :artists, :with_meta => true
+  taggable :enable_meta => true
+  taggable :artists, :enable_meta => true
 end
 
 describe Mongoid::TaggableWithContext::Meta do
