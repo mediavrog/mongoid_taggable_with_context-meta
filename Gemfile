@@ -1,12 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'mongo', '~> 1.5.2'
-gem "mongoid", "= 2.4.4"
-gem 'mongoid_taggable_with_context'
-
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 group :development do
+  gem 'mongo', '~> 1.5.2'
+  gem "mongoid", "= 2.4.4"
+  gem 'mongoid_taggable_with_context'
   gem 'database_cleaner'
   gem 'bson', '~> 1.5.2'
   gem 'bson_ext', '~> 1.5.2'

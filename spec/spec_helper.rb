@@ -4,7 +4,7 @@
 require 'rspec'
 require 'mongoid'
 require 'mongoid_taggable_with_context'
-require 'mongoid_taggable_with_context_with_meta.rb'
+require 'mongoid_taggable_with_context.rb'
 require 'database_cleaner'
 
 Mongoid::MONGODB_VERSION = "1.8.2"

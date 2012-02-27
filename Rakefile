@@ -11,13 +11,14 @@ require 'rake'
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
-  gem.name = "mongoid_taggable_with_context_with_meta"
-  gem.homepage = "https://github.com/mediavrog/mongoid_taggable_with_context_with_meta"
+  gem.name = "mongoid_taggable_with_context-meta"
+  gem.homepage = "https://github.com/mediavrog/mongoid_taggable_with_context-meta"
   gem.license = "MIT"
-  gem.summary = %Q{Attach with_meta information to tags}
-  gem.description = %Q{It provides methods to add with_meta data to tags created with Mongoid Taggable with Context.}
+  gem.summary = %Q{Attach meta information to tags}
+  gem.description = %Q{It provides methods to enhance tags with meta data. Extension for gem mongoid_taggable_with_context}
   gem.email = "maik@mediavrog.net"
   gem.authors = ["Maik Vlcek"]
+  gem.add_dependency 'mongoid_taggable_with_context'
 end
 Jeweler::RubygemsDotOrgTasks.new
 

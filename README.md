@@ -1,9 +1,9 @@
-mongoid_taggable_with_context_with_meta
+mongoid_taggable_with_context-meta
 =============================
 
 NOTE: this is in IMPLEMENTAION PHASE: Not supposed to work right now
 
-[![Build Status](https://secure.travis-ci.org/mediavrog/mongoid_taggable_with_context_with_meta.png?branch=master)](http://travis-ci.org/mediavrog/mongoid_taggable_with_context_with_meta) [![Dependency Status](https://gemnasium.com/mediavrog/mongoid_taggable_with_context_with_meta.png?travis)](https://gemnasium.com/mediavrog/mongoid_taggable_with_context_with_meta)
+[![Build Status](https://secure.travis-ci.org/mediavrog/mongoid_taggable_with_context-meta.png?branch=master)](http://travis-ci.org/mediavrog/mongoid_taggable_with_context-meta) [![Dependency Status](https://gemnasium.com/mediavrog/mongoid_taggable_with_context-meta.png?travis)](https://gemnasium.com/mediavrog/mongoid_taggable_with_context-meta)
 
 Extends mongoid_taggable_with_context with support to attach meta information to tags.
 
@@ -13,13 +13,13 @@ Installation
 You can simply install from rubygems:
 
 ```
-gem install mongoid_taggable_with_context_with_meta
+gem install mongoid_taggable_with_context-meta
 ```
 
 or in Gemfile:
 
 ```ruby
-gem 'mongoid_taggable_with_context_with_meta'
+gem 'mongoid_taggable_with_context-meta'
 ```
 
 TODO from here
@@ -151,7 +151,7 @@ Post.tags_with_weight # will retrieve:
 # ]
 ```
 
-Contributing to mongoid_taggable_with_context_with_meta
+Contributing to mongoid_taggable_with_context-meta
 --------------------------------------------------------
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
