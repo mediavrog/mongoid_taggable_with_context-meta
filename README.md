@@ -1,6 +1,8 @@
 mongoid_taggable_with_context_with_meta
 =============================
 
+NOTE: this is in IMPLEMENTAION PHASE: Not supposed to work right now
+
 [![Build Status](https://secure.travis-ci.org/mediavrog/mongoid_taggable_with_context_with_meta.png?branch=master)](http://travis-ci.org/mediavrog/mongoid_taggable_with_context_with_meta) [![Dependency Status](https://gemnasium.com/mediavrog/mongoid_taggable_with_context_with_meta.png?travis)](https://gemnasium.com/mediavrog/mongoid_taggable_with_context_with_meta)
 
 Extends mongoid_taggable_with_context with support to attach meta information to tags.
