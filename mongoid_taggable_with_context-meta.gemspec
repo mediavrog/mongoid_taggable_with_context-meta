@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "mongoid_taggable_with_context-meta"
-  s.version = "0.0.4"
+  s.version = "0.0.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Maik Vlcek"]
@@ -29,7 +29,6 @@ Gem::Specification.new do |s|
     "VERSION",
     "lib/mongoid_taggable_with_context-meta.rb",
     "lib/mongoid_taggable_with_context/meta.rb",
-    "lib/mongoid_taggable_with_context/meta_tag.rb",
     "mongoid_taggable_with_context-meta.gemspec",
     "spec/mongoid_taggable_with_context_with_meta_spec.rb",
     "spec/spec_helper.rb"

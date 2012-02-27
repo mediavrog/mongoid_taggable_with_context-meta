@@ -27,7 +27,7 @@ Basic Usage
 
 To make a document taggable with meta information you need to include Mongoid::TaggableOnContext and Mongoid::TaggableOnContext::Meta into your document and call the *taggable* macro with the argument 'enable_meta' set to true:
 
-Note: 
+Note:
 Please refer to https://github.com/aq1018/mongoid_taggable_with_context for information on how to use Mongoid::TaggableOnContext
 
 ```ruby

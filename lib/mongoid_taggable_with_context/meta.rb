@@ -3,6 +3,14 @@ module Mongoid
     module Meta
       extend ActiveSupport::Concern
 
+      class MetaTag
+        include Mongoid::Document
+        field :name, :type => String
+        field :context
+        field :meta, :type => Hash, :default => {}
+        embedded_in :meta_tagable, :polymorphic => true
+      end
+
       included do
         embeds_many :meta_tags, :as => :meta_tagable, :class_name => "Mongoid::TaggableWithContext::Meta::MetaTag"
       end
@@ -47,6 +55,7 @@ module Mongoid
           def add_#{tags_field.to_s.singularize}_with_meta(tag_name, meta)
             self.meta_tags.create(:context => "#{tags_field}", :name => tag_name.strip, :meta => meta)
             self.#{tags_field}_array << tag_name
+            self.save!
           end
           END
         end
