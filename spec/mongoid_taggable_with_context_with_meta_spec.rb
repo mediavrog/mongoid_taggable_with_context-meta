@@ -11,7 +11,7 @@ end
 
 describe Mongoid::TaggableWithContext::Meta do
 
-  context "handling meta with tags" do
+  context "handling with_meta with tags" do
     before :each do
       @m = MyModel.new
     end
@@ -23,7 +23,7 @@ describe Mongoid::TaggableWithContext::Meta do
       @m.tags_array.should == %w[tag1 tag2 tag_with_meta]
     end
 
-    it "should provide method to retrieve only tags with meta information as array" do
+    it "should provide method to retrieve only tags with with_meta information as array" do
       @m.tags_array = %w[tag1 tag2]
       @m.add_tag_with_meta('tag_with_meta', {:key => 'meep', :key2 => 'meep2'})
       @m.add_tag_with_meta('tag_with_meta_2', {:key => 'meep_t2', :key2 => 'meep2_t2'})
@@ -31,7 +31,7 @@ describe Mongoid::TaggableWithContext::Meta do
       @m.tags_having_meta.should == 'tag_with_meta tag_with_meta_2'
     end
 
-    it "should provide method to retrieve only tags with meta information as string" do
+    it "should provide method to retrieve only tags with with_meta information as string" do
       @m.tags_array = %w[tag1 tag2]
       @m.add_tag_with_meta('tag_with_meta', {:key => 'meep', :key2 => 'meep2'})
       @m.add_tag_with_meta('tag_with_meta_2', {:key => 'meep_t2', :key2 => 'meep2_t2'})
@@ -39,7 +39,7 @@ describe Mongoid::TaggableWithContext::Meta do
       @m.tags_having_meta_array.should == %w[tag_with_meta tag_with_meta_2]
     end
 
-    it "should provide method to retrieve only tags with meta information as objects as array" do
+    it "should provide method to retrieve only tags with with_meta information as objects as array" do
       @m.tags_array = %w[tag1 tag2]
       @m.add_tag_with_meta('tag_with_meta', {:key => 'meep', :key2 => 'meep2'})
       @m.add_tag_with_meta('tag_with_meta_2', {:key => 'meep_t2', :key2 => 'meep2_t2'})
@@ -50,7 +50,7 @@ describe Mongoid::TaggableWithContext::Meta do
       ]
     end
 
-    it "should provide method to retrieve all tags with meta information (if available) as objects as array" do
+    it "should provide method to retrieve all tags with with_meta information (if available) as objects as array" do
       @m.tags_array = %w[tag1 tag2]
       @m.add_tag_with_meta('tag_with_meta', {:key => 'meep', :key2 => 'meep2'})
       @m.add_tag_with_meta('tag_with_meta_2', {:key => 'meep_t2', :key2 => 'meep2_t2'})
@@ -63,8 +63,8 @@ describe Mongoid::TaggableWithContext::Meta do
       ].sort
     end
 
-    it "should set meta for an existing tag"
-    it "should erase meta for deleted tag"
+    it "should set with_meta for an existing tag"
+    it "should erase with_meta for deleted tag"
   end
 
   context "respecting context" do

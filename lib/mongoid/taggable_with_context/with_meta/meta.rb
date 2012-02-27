@@ -25,7 +25,7 @@ module Mongoid
           # instance methods
           class_eval <<-END
 
-          # retrieve meta tags in various formats
+          # retrieve with_meta tags in various formats
           def #{tags_field}_having_meta
             self.#{tags_field}_having_meta_array.join(get_tag_separator_for(:"#{tags_field}"))
           end
@@ -35,7 +35,7 @@ module Mongoid
           end
 
           def #{tags_field}_having_and_including_meta
-            self.meta_tags.where(context: "#{tags_field}").collect{|i| [i.name, i.meta] }
+            self.meta_tags.where(context: "#{tags_field}").collect{|i| [i.name, i.with_meta] }
           end
 
           def #{tags_field}_including_meta
@@ -43,9 +43,9 @@ module Mongoid
             self.#{tags_field}_having_and_including_meta + normal_tags.collect{|i| [i, {}]}
           end
 
-          # adds single meta enhances tag
-          def add_#{tags_field.to_s.singularize}_with_meta(tag_name, meta)
-            self.meta_tags.create(:context => "#{tags_field}", :name => tag_name.strip, :meta => meta)
+          # adds single with_meta enhances tag
+          def add_#{tags_field.to_s.singularize}_with_meta(tag_name, with_meta)
+            self.meta_tags.create(:context => "#{tags_field}", :name => tag_name.strip, :with_meta => with_meta)
             self.#{tags_field}_array << tag_name
           end
           END

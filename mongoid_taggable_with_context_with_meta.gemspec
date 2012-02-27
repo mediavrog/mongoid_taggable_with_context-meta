@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = "mongoid_taggable_with_context_with_meta"
-  s.version = "0.8.0"
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Maik Vlcek"]
   s.date = "2012-02-27"
-  s.description = "It provides methods to add meta data to tags created with Mongoid Taggable with Context."
+  s.description = "It provides methods to add with_meta data to tags created with Mongoid Taggable with Context."
   s.email = "maik@mediavrog.net"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -26,11 +26,10 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
-    "init.rb",
-    "lib/mongoid/taggable_with_context.rb",
-    "lib/mongoid/taggable_with_context/meta/meta.rb",
+    "lib/mongoid/taggable_with_context/with_meta/meta.rb",
+    "lib/mongoid/taggable_with_context/with_meta/meta_tag.rb",
     "lib/mongoid_taggable_with_context_with_meta.rb",
-    "mongoid_taggable_with_context_with_meta_bak.gemspec",
+    "mongoid_taggable_with_context_with_meta.gemspec",
     "spec/mongoid_taggable_with_context_with_meta_spec.rb",
     "spec/spec_helper.rb"
   ]
@@ -38,7 +37,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.15"
-  s.summary = "Attach meta information to tags"
+  s.summary = "Attach with_meta information to tags"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
