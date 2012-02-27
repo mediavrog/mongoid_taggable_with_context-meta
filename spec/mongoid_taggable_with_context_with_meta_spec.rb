@@ -63,8 +63,21 @@ describe Mongoid::TaggableWithContext::Meta do
       ].sort
     end
 
-    it "should set with_meta for an existing tag"
-    it "should erase with_meta for deleted tag"
+    it "should set with_meta for an existing tag to avoid duplicates"
+
+    it "should erase with_meta for deleted tag" do
+      @m.tags_array = %w[tag1 tag2]
+      @m.add_tag_with_meta('tag_with_meta', {:key => 'meep', :key2 => 'meep2'})
+      @m.add_artist_with_meta('tag_with_meta_2', {:key => 'meep_t2', :key2 => 'meep2_t2'})
+
+      # now set tags, so that metadate tag is not present anymore
+      @m.tags_array = %w[tag1 tag2]
+      @m.save
+
+      @m.tags_array.should == %w[tag1 tag2]
+      @m.tags_having_meta_array.should == %w[]
+      @m.artists_having_meta_array.should == %w[tag_with_meta_2]
+    end
   end
 
   context "respecting context" do
