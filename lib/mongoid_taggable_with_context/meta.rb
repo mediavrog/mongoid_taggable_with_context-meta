@@ -1,5 +1,3 @@
-require 'meta_tag'
-
 module Mongoid
   module TaggableWithContext
     module Meta

@@ -4,7 +4,7 @@
 require 'rspec'
 require 'mongoid'
 require 'mongoid_taggable_with_context'
-require 'mongoid_taggable_with_context.rb'
+require 'mongoid_taggable_with_context-meta.rb'
 require 'database_cleaner'
 
 Mongoid::MONGODB_VERSION = "1.8.2"
@@ -20,5 +20,5 @@ RSpec.configure do |config|
 end
 
 Mongoid.configure do |config|
-  config.master = Mongo::Connection.new.db("mongoid_taggable_with_context_with_meta_test")
+  config.master = Mongo::Connection.new.db("mongoid_taggable_with_context_meta_test")
 end
