@@ -22,41 +22,34 @@ or in Gemfile:
 gem 'mongoid_taggable_with_context-meta'
 ```
 
-TODO from here
-
 Basic Usage
 -----------
 
-To make a document taggable you need to include Mongoid::TaggableOnContext into your document and call the *taggable* macro with optional arguments:
+To make a document taggable with meta information you need to include Mongoid::TaggableOnContext and Mongoid::TaggableOnContext::Meta into your document and call the *taggable* macro with the argument 'enable_meta' set to true:
 
 ```ruby
 class Post
   include Mongoid::Document
   include Mongoid::TaggableWithContext
-
-  field :title
-  field :content
+  include Mongoid::TaggableWithContext::Meta
 
   # default context is 'tags'.
   # This creates #tags, #tags=, #tags_array, #tags_array= instance methods
-  # separator is " " by default
-  # #tags method returns space separated string
-  # #tags= methods accepts space separated string
-  # #tags_array method returns an array of tags
-  # #tags_array= method accepts an array of tags
-  # #tags and #tags_array are automatically synched.
-  taggable
+  taggable :enable_meta => true
 
   # tagging for 'interests' context.
   # This creates #interests, #interests=, #interests_array, #interests_array= instance methods
-  taggable :interests
+  taggable :interests, :enable_meta => true
 
-  # tagging for 'skills' context.
-  # This creates #skills, #skills=, #skills_array, #skills_array= instance methods
-  # changing tag separator to "," (Default is " ")
-  taggable :skills, :separator => ','
 end
 ```
+
+Please refer to https://github.com/aq1018/mongoid_taggable_with_context for information on how to use Mongoid::TaggableOnContext
+
+TODO: add dynamic setter for use with form fields, rest ...
+-----------------------------------------------------------
+
+-No Support as for now-
 
 Then in your form, for example:
 
@@ -88,67 +81,18 @@ Then in your form, for example:
 <% end %>
 ```
 
-Aggregation Strategies
-----------------------
-
-By including an aggregation strategy in your document, tag aggregations will be automatically available to you.
-This lib presents the following aggregation strategies:
-
-* MapReduce
-* RealTime
-
-The following document will automatically aggregate counts on all tag contexts.
+Here is an overview ofthe provided methods:
 
 ```ruby
-class Post
-  include Mongoid::Document
-  include Mongoid::TaggableWithContext
+p = Post.create!(:tags => "food ant bee")
+p.add_tag_with_meta('metatag', {:something => 'Foo', :another => 'Bar'})
+p.add_tag_with_meta('metatag2', {:something => 'Foo2', :another => 'Bar2'})
 
-  # automatically adds real time aggregations to all tag contexts
-  include Mongoid::TaggableWithContext::AggregationStrategy::RealTime
-
-  # alternatively for map-reduce
-  # include Mongoid::TaggableWithContext::AggregationStrategy::MapReduce
-
-  field :title
-  field :content
-
-  taggable
-  taggable :interests
-  taggable :skills, :separator => ','
-end
-```
-
-When you include an aggregation strategy, your document also gains a few extra methods to retrieve aggregation data.
-In the case of previous example the following methods are included:
-
-```ruby
-Post.tags
-Post.tags_with_weight
-Post.interests
-Post.interests_with_weight
-Post.skills
-Post.skills_with_weight
-```
-
-Here is how to use these methods in more detail:
-
-```ruby
-Post.create!(:tags => "food,ant,bee")
-Post.create!(:tags => "juice,food,bee,zip")
-Post.create!(:tags => "honey,strip,food")
-
-Post.tags # will retrieve ["ant", "bee", "food", "honey", "juice", "strip", "zip"]
-Post.tags_with_weight # will retrieve:
-# [
-#   ['ant', 1],
-#   ['bee', 2],
-#   ['food', 3],
-#   ['honey', 1],
-#   ['juice', 1],
-#   ['strip', 1],
-#   ['zip', 1]
-# ]
+p.tags                      # => "food ant bee metatag metatag2"
+p.tags_array                # => ["food", "ant", "bee", "metatag", "metatag2"]
+p.tags_having_meta          # => "metatag, metatag2"
+p.tags_having_meta_array    # => ["metatag", "metatag2"]
+p.tags_including_meta       # =>[ ["food", {}], ["ant", {}], ["bee", {}], ["metatag", {:something => 'Foo', :another => 'Bar'}], ["metatag2", {:something => 'Foo2', :another => 'Bar2'}] ]
 ```
 
 Contributing to mongoid_taggable_with_context-meta
