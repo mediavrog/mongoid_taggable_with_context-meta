@@ -27,6 +27,9 @@ Basic Usage
 
 To make a document taggable with meta information you need to include Mongoid::TaggableOnContext and Mongoid::TaggableOnContext::Meta into your document and call the *taggable* macro with the argument 'enable_meta' set to true:
 
+Note: 
+Please refer to https://github.com/aq1018/mongoid_taggable_with_context for information on how to use Mongoid::TaggableOnContext
+
 ```ruby
 class Post
   include Mongoid::Document
@@ -34,17 +37,29 @@ class Post
   include Mongoid::TaggableWithContext::Meta
 
   # default context is 'tags'.
-  # This creates #tags, #tags=, #tags_array, #tags_array= instance methods
+  # enable_meta => true additionally creates #tags_having_meta, #tags_having_meta_array, #tags_including_meta, #add_tag_with_meta(tag, obj) instance methods
   taggable :enable_meta => true
 
   # tagging for 'interests' context.
-  # This creates #interests, #interests=, #interests_array, #interests_array= instance methods
+  # enable_meta => true additionally creates #interests_having_meta, #interests_having_meta_array, #interests_including_meta, #add_interest_with_meta(tag, obj) instance methods
   taggable :interests, :enable_meta => true
 
 end
 ```
 
-Please refer to https://github.com/aq1018/mongoid_taggable_with_context for information on how to use Mongoid::TaggableOnContext
+Here is an overview ofthe provided methods:
+
+```ruby
+p = Post.create!(:tags => "food ant bee")
+p.add_tag_with_meta('metatag', {:something => 'Foo', :another => 'Bar'})
+p.add_tag_with_meta('metatag2', {:something => 'Foo2', :another => 'Bar2'})
+
+p.tags                      # => "food ant bee metatag metatag2"
+p.tags_array                # => ["food", "ant", "bee", "metatag", "metatag2"]
+p.tags_having_meta          # => "metatag, metatag2"
+p.tags_having_meta_array    # => ["metatag", "metatag2"]
+p.tags_including_meta       # =>[ ["food", {}], ["ant", {}], ["bee", {}], ["metatag", {:something => 'Foo', :another => 'Bar'}], ["metatag2", {:something => 'Foo2', :another => 'Bar2'}] ]
+```
 
 TODO: add dynamic setter for use with form fields, rest ...
 -----------------------------------------------------------
@@ -79,20 +94,6 @@ Then in your form, for example:
     <button type="submit">Send</button>
   </p>
 <% end %>
-```
-
-Here is an overview ofthe provided methods:
-
-```ruby
-p = Post.create!(:tags => "food ant bee")
-p.add_tag_with_meta('metatag', {:something => 'Foo', :another => 'Bar'})
-p.add_tag_with_meta('metatag2', {:something => 'Foo2', :another => 'Bar2'})
-
-p.tags                      # => "food ant bee metatag metatag2"
-p.tags_array                # => ["food", "ant", "bee", "metatag", "metatag2"]
-p.tags_having_meta          # => "metatag, metatag2"
-p.tags_having_meta_array    # => ["metatag", "metatag2"]
-p.tags_including_meta       # =>[ ["food", {}], ["ant", {}], ["bee", {}], ["metatag", {:something => 'Foo', :another => 'Bar'}], ["metatag2", {:something => 'Foo2', :another => 'Bar2'}] ]
 ```
 
 Contributing to mongoid_taggable_with_context-meta
